@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/show_board_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFF00"
+        android:gravity="center"
+        android:hint="显示信息"
+        android:textColor="#F00"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ordinaryFunc"
+        android:text="hook 普通方法" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="os_imei_function"
+        android:text="hook 系统方法: IMEI" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="wifi_ip_function"
+        android:text="wifi IP地址" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="GPRS_ip_function"
+        android:text="流量 IP地址" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ui_function"
+        android:text="hook ui控件" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="construction_func"
+        android:text="hook 构造方法" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="staic_func"
+        android:text="hook staic静态函数" />
+
+</LinearLayout>
