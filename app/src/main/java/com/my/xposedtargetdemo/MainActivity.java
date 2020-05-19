@@ -1,9 +1,5 @@
 package com.my.xposedtargetdemo;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -12,6 +8,10 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +29,29 @@ public class MainActivity extends AppCompatActivity {
         Util util = new Util();
         String result = util.ordinaryFunc("Dio", "wonam", 20);
         show_board.setText(result);
+    }
+
+    //hook 匿名内部类方法
+    public void internalClassFunc(View view) {
+        ABClass abClass = new ABClass() {
+            @Override
+            public void say(String sentence) {
+                super.say(sentence);
+                show_board.setText(name);
+            }
+        };
+        abClass.say("  MainActivity");
+    }
+
+    //hook 匿名内部类方法
+    public void internalClassFunc2(View view) {
+        new ABClass() {
+            @Override
+            public void say2(String sentence) {
+                super.say2(sentence);
+                show_board.setText(name);
+            }
+        }.say2("  MainActivity 222");
     }
 
     //判断权限

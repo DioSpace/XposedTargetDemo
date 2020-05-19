@@ -26,6 +26,18 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="internalClassFunc"
+        android:text="hook 匿名内部类方法" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="internalClassFunc2"
+        android:text="hook 匿名内部类方法 二" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="os_imei_function"
         android:text="hook 系统方法: IMEI" />
 
