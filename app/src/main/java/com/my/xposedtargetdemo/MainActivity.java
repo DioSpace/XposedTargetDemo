@@ -69,16 +69,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //拦截系统方法    篡改IMEI设备号
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void os_imei_function(View view) {
-        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        if (checkPermission(this, Manifest.permission.READ_PHONE_STATE, "com.my.xposedtargetdemo")) {
-//            String imei = tm.getImei(); // 取出 IMEI(设备id)
-            String imei = tm.getDeviceId(); // 取出 IMEI 需要 api26以上
-            String imsi = tm.getSubscriberId(); //IMSI 与你的手机卡是绑定关系 用于区别移动用户的有效信息 IMSI是用户的标识
-            String result = "imei:" + imei + " imsi:" + imsi;
-            show_board.setText(result);
-        }
+        DeviceUtil deviceUtil = new DeviceUtil();
+        String imei = deviceUtil.getIMEI(this);
+        String imei2 = deviceUtil.getIMEI2(this);
+        show_board.setText("imei:" + imei + "\n" + "imei2:" + imei2);
     }
 
     // wifi 拦截IP地址
