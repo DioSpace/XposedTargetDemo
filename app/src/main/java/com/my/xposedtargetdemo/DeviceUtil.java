@@ -5,8 +5,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
@@ -14,9 +14,9 @@ import androidx.core.content.ContextCompat;
 
 import java.lang.reflect.Method;
 
-import static android.content.ContentValues.TAG;
-
 public class DeviceUtil {
+
+    private static final String TAG = "DeviceUtil";
 
     private boolean checkReadPhoneStatePermission(Context context) {
         try {
@@ -32,85 +32,38 @@ public class DeviceUtil {
         return true;
     }
 
-    /*
-     * 获取IMEI
-     * */
+    /**
+     * @param context
+     * @return
+     */
     @SuppressLint("MissingPermission")
     public String getIMEI(Context context) {
         if (!checkReadPhoneStatePermission(context)) {
-            Log.w(TAG, "获取唯一设备号-getIMEI: 无权限");
+            Log.w(TAG, "获取唯一设备号 IMEI : 无权限");
             return "";
         }
-        String imei1 = "";
-        TelephonyManager mTelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (null != mTelephonyMgr) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                imei1 = mTelephonyMgr.getImei(0);
-                Log.i(TAG, "Android版本大于o-26-优化后的获取---imei-1:" + imei1);
-            } else {
-                try {
-                    imei1 = getDoubleImei(mTelephonyMgr, "getDeviceIdGemini", 0);
-                } catch (Exception e) {
-                    try {
-                        imei1 = getDoubleImei(mTelephonyMgr, "getDeviceId", 0);
-                    } catch (Exception e1) {
-                        e1.printStackTrace();
-                    }
-                    Log.e(TAG, "get device id fail: " + e.toString());
-                }
+        TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        try {
+            Method method = manager.getClass().getMethod("getImei", int.class);
+            String imei1 = (String) method.invoke(manager, 0);
+            String imei2 = (String) method.invoke(manager, 1);
+            if (TextUtils.isEmpty(imei1)) {
+                return imei2;
             }
-        }
-
-        Log.i(TAG, "优化后的获取---imei1：" + imei1);
-        return imei1;
-    }
-
-    @SuppressLint("MissingPermission")
-    public String getIMEI2(Context context) {
-        if (!checkReadPhoneStatePermission(context)) {
-            Log.w(TAG, "获取唯一设备号-getIMEI2: 无权限");
-            return "";
-        }
-        String imei2 = "";
-        TelephonyManager mTelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (null != mTelephonyMgr) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                imei2 = mTelephonyMgr.getImei(1);
-                mTelephonyMgr.getMeid();
-                Log.i(TAG, "Android版本大于o-26-优化后的获取---imei-2:" + imei2);
-            } else {
-                try {
-                    imei2 = getDoubleImei(mTelephonyMgr, "getDeviceIdGemini", 1);
-                } catch (Exception e) {
-                    try {
-                        imei2 = getDoubleImei(mTelephonyMgr, "getDeviceId", 1);
-                    } catch (Exception ex) {
-                        Log.e(TAG, "get device id fail: " + e.toString());
-                    }
-                }
+            if (TextUtils.isEmpty(imei2)) {
+                return imei1;
             }
+            //因为手机卡插在不同位置，获取到的imei1和imei2值有可能会交换，所以取它们的最小值(最大值也行),保证拿到的imei都是同一个
+            String imei = "";
+            if (imei1.compareTo(imei2) <= 0) {
+                imei = imei1;
+            } else {
+                imei = imei2;
+            }
+            return imei;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return manager.getDeviceId();
         }
-
-        Log.i(TAG, "优化后的获取--- imei2:" + imei2);
-        return imei2;
-    }
-
-    /**
-     * 获取双卡手机的imei
-     */
-    private String getDoubleImei(TelephonyManager telephony, String predictedMethodName, int slotID) throws Exception {
-        String inumeric = null;
-
-        Class<?> telephonyClass = Class.forName(telephony.getClass().getName());
-        Class<?>[] parameter = new Class[1];
-        parameter[0] = int.class;
-        Method getSimID = telephonyClass.getMethod(predictedMethodName, parameter);
-        Object[] obParameter = new Object[1];
-        obParameter[0] = slotID;
-        Object ob_phone = getSimID.invoke(telephony, obParameter);
-        if (ob_phone != null) {
-            inumeric = ob_phone.toString();
-        }
-        return inumeric;
     }
 }

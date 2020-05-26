@@ -38,6 +38,24 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="construction_func"
+        android:text="hook 构造方法" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="staic_func"
+        android:text="hook staic静态函数" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ui_function"
+        android:text="hook ui控件" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="os_imei_function"
         android:text="hook 系统方法: IMEI" />
 
@@ -52,23 +70,5 @@
         android:layout_height="wrap_content"
         android:onClick="GPRS_ip_function"
         android:text="流量 IP地址" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="ui_function"
-        android:text="hook ui控件" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="construction_func"
-        android:text="hook 构造方法" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="staic_func"
-        android:text="hook staic静态函数" />
 
 </LinearLayout>

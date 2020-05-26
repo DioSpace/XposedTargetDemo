@@ -72,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
     public void os_imei_function(View view) {
         DeviceUtil deviceUtil = new DeviceUtil();
         String imei = deviceUtil.getIMEI(this);
-        String imei2 = deviceUtil.getIMEI2(this);
-        show_board.setText("imei:" + imei + "\n" + "imei2:" + imei2);
+        show_board.setText("imei:" + imei);
     }
 
     // wifi 拦截IP地址
