@@ -8,6 +8,11 @@ public class Util {
         return result;
     }
 
+    //参数是自定义的类
+    public String param_isClass(int index, ParamClass paramClass) {
+        return index + " : " + paramClass.name + "\t\t" + paramClass.age;
+    }
+
     //重载方法
     public String judgeByAge(int age) {
         String result = "";

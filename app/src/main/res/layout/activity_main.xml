@@ -26,6 +26,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="param_class"
+        android:text="参数 是自定义的类" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:onClick="internalClassFunc"
         android:text="hook 匿名内部类方法" />
 

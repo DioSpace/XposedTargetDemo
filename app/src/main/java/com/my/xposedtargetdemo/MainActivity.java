@@ -31,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         show_board.setText(result);
     }
 
+    //参数是自定义的类
+    public void param_class(View view) {
+        Util util = new Util();
+        ParamClass paramClass = new ParamClass("Dio2", 19);
+        String result = util.param_isClass(9, paramClass);
+        show_board.setText(result);
+    }
+
     //hook 匿名内部类方法
     public void internalClassFunc(View view) {
         ABClass abClass = new ABClass() {
