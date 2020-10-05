@@ -17,64 +17,92 @@
         android:textSize="30sp"
         android:textStyle="bold|italic" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="ordinaryFunc"
-        android:text="hook 普通方法" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="param_class"
-        android:text="参数 是自定义的类" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="internalClassFunc"
-        android:text="hook 匿名内部类方法" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ordinaryFunc"
+                android:text="hook 普通方法" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="internalClassFunc2"
-        android:text="hook 匿名内部类方法 二" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="hook_and_replace"
+                android:text="hook 后替换方法" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="construction_func"
-        android:text="hook 构造方法" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="param_class"
+                android:text="参数 是自定义的类" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="staic_func"
-        android:text="hook staic静态函数" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="internalClassFunc"
+                android:text="hook 匿名内部类方法" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="ui_function"
-        android:text="hook ui控件" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="internalClassFunc2"
+                android:text="hook 匿名内部类方法 二" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="os_imei_function"
-        android:text="hook 系统方法: IMEI" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="construction_func"
+                android:text="hook 构造方法" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="wifi_ip_function"
-        android:text="wifi IP地址" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="staic_func"
+                android:text="hook staic静态函数" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="GPRS_ip_function"
-        android:text="流量 IP地址" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="ui_function"
+                android:text="hook ui控件" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="os_imei_function"
+                android:text="hook 系统方法: IMEI" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="wifi_ip_function"
+                android:text="wifi IP地址" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="GPRS_ip_function"
+                android:text="流量 IP地址" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

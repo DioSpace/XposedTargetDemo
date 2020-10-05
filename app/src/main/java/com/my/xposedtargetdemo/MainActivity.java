@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
     public void ordinaryFunc(View view) {
         Util util = new Util();
         String result = util.ordinaryFunc("Dio", "wonam", 20);
+        show_board.setText(result);
+    }
+
+    //hook后替换原来的方法
+    public void hook_and_replace(View view) {
+        Util util = new Util();
+        String result = util.replace_target_fun(MainActivity.this);
         show_board.setText(result);
     }
 

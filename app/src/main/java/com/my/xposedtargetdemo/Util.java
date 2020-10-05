@@ -1,11 +1,19 @@
 package com.my.xposedtargetdemo;
 
+import android.app.Activity;
+import android.widget.Toast;
+
 public class Util {
 
     //普通方法
     public String ordinaryFunc(String name, String gender, int age) {
         String result = "姓名:" + name + "\t性别:" + gender + "年龄:" + age;
         return result;
+    }
+
+    public String replace_target_fun(Activity activity) {
+        Toast.makeText(activity, "Hooked is not go!", Toast.LENGTH_SHORT).show();
+        return "hooked is failed!";
     }
 
     //参数是自定义的类
