@@ -14,6 +14,8 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import java.util.Properties;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView show_board;
@@ -47,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
         show_board.setText(result);
     }
 
-    //hook 匿名内部类方法
-    public void internalClassFunc(View view) {
+    //hook 抽象类方里的方法
+    public void abstractClassFunc(View view) {
         ABClass abClass = new ABClass() {
             @Override
             public void say(String sentence) {
@@ -59,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
         abClass.say("  MainActivity");
     }
 
-    //hook 匿名内部类方法
-    public void internalClassFunc2(View view) {
+    //hook 抽象类方里的方法   2
+    public void abstractClassFunc2(View view) {
         new ABClass() {
             @Override
             public void say2(String sentence) {
@@ -68,6 +70,39 @@ public class MainActivity extends AppCompatActivity {
                 show_board.setText(name);
             }
         }.say2("  MainActivity 222");
+    }
+
+    //hook 抽象类方里的方法   3
+    public void abstractClassFunc3(View view) {
+        //直接hook抽像类的 方法，所有继承抽象类后的实体类 调用抽像类的方法后 都会被hook住。(其实这一步有些多余,这种hook方法跟第一种一样)
+        IMClass imClass = new IMClass();
+        imClass.say("+abstractClassFunc3");
+        String name = imClass.name;
+        show_board.setText(name);
+    }
+
+    //静态内部类
+    public void static_inner_class_func(View view) {
+        StaticInnerClass.Inner innner = new StaticInnerClass.Inner();
+        String result = innner.func1("p_MainActivity");
+        show_board.setText(result);
+    }
+
+    //hook ui控件 并更改显示
+    public void ui_function(View view) {
+        show_board.setText("UI 原始显示值");
+    }
+
+    //Student 里的 构造方法
+    public void construction_func(View view) {
+        Student stu = new Student("Leo", "man", 18, 58.5, false);
+        show_board.setText(stu.toString());
+    }
+
+    //util 里的静态方法
+    public void staic_func(View view) {
+        String result = Util.myInfo("Lily", 98);
+        show_board.setText(result);
     }
 
     //判断权限
@@ -101,23 +136,6 @@ public class MainActivity extends AppCompatActivity {
     public void GPRS_ip_function(View view) {
         String ipAddress = NetWorkUtils.getLocalIpAddress();
         show_board.setText("ip : " + ipAddress);
-    }
-
-    //hook ui控件 并更改显示
-    public void ui_function(View view) {
-        show_board.setText("UI 原始显示值");
-    }
-
-    //Student 里的 构造方法
-    public void construction_func(View view) {
-        Student stu = new Student("Leo", "man", 18, 58.5, false);
-        show_board.setText(stu.toString());
-    }
-
-    //util 里的静态方法
-    public void staic_func(View view) {
-        String result = Util.myInfo("Lily", 98);
-        show_board.setText(result);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.my.xposedtargetdemo;
 
+//抽像类
 abstract class ABClass {
 
     String name = "ABClass  ";//抽象类的属性是不会被调用的，除了方法

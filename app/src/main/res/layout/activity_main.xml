@@ -48,14 +48,33 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="internalClassFunc"
+                android:onClick="abstractClassFunc"
                 android:text="hook 匿名内部类方法" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="internalClassFunc2"
+                android:onClick="abstractClassFunc2"
                 android:text="hook 匿名内部类方法 二" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="abstractClassFunc3"
+                android:text="hook 匿名内部类方法 三" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="static_inner_class_func"
+                android:text="hook 静态内部类" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <Button
                 android:layout_width="match_parent"
@@ -74,13 +93,6 @@
                 android:layout_height="wrap_content"
                 android:onClick="ui_function"
                 android:text="hook ui控件" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
             <Button
                 android:layout_width="match_parent"
