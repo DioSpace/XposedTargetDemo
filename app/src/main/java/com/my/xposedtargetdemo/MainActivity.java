@@ -1,20 +1,13 @@
 package com.my.xposedtargetdemo;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
-import java.util.Properties;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         show_board.setText(result);
     }
 
-    //参数是自定义的类
+    //方法参数是自定义的类
     public void param_class(View view) {
         Util util = new Util();
         ParamClass paramClass = new ParamClass("Dio2", 19);
@@ -88,6 +81,14 @@ public class MainActivity extends AppCompatActivity {
         show_board.setText(result);
     }
 
+    //内部类
+    public void inner_class_func(View view) {
+        OuterClass outerClass = new OuterClass();
+        OuterClass.InternalClass internalClass = outerClass.new InternalClass();
+        String result = internalClass.sayit2("origin value");
+        show_board.setText(result);
+    }
+
     //hook ui控件 并更改显示
     public void ui_function(View view) {
         show_board.setText("UI 原始显示值");
@@ -103,39 +104,6 @@ public class MainActivity extends AppCompatActivity {
     public void staic_func(View view) {
         String result = Util.myInfo("Lily", 98);
         show_board.setText(result);
-    }
-
-    //判断权限
-    private boolean checkPermission(Context context, String permName, String pkgName) {
-        PackageManager pm = context.getPackageManager();
-        if (PackageManager.PERMISSION_GRANTED == pm.checkPermission(permName, pkgName)) {
-            System.out.println(pkgName + "has permission : " + permName);
-            return true;
-        } else {
-            System.out.println(pkgName + "not has permission : " + permName);
-            String[] permissions = new String[]{permName};
-            ActivityCompat.requestPermissions(this, permissions, 100);
-            return false;
-        }
-    }
-
-    //拦截系统方法    篡改IMEI设备号
-    public void os_imei_function(View view) {
-        DeviceUtil deviceUtil = new DeviceUtil();
-        String imei = deviceUtil.getIMEI(this);
-        show_board.setText("imei:" + imei);
-    }
-
-    // wifi 拦截IP地址
-    public void wifi_ip_function(View view) {
-        String ipAddress = NetWorkUtils.getLocalIpAddress(this);
-        show_board.setText("ip : " + ipAddress);
-    }
-
-    //GPRS 拦截IP地址
-    public void GPRS_ip_function(View view) {
-        String ipAddress = NetWorkUtils.getLocalIpAddress();
-        show_board.setText("ip : " + ipAddress);
     }
 
 }

@@ -69,6 +69,12 @@
                 android:onClick="static_inner_class_func"
                 android:text="hook 静态内部类" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="inner_class_func"
+                android:text="hook 内部类" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -93,24 +99,6 @@
                 android:layout_height="wrap_content"
                 android:onClick="ui_function"
                 android:text="hook ui控件" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="os_imei_function"
-                android:text="hook 系统方法: IMEI" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="wifi_ip_function"
-                android:text="wifi IP地址" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="GPRS_ip_function"
-                android:text="流量 IP地址" />
 
         </LinearLayout>
 
